@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
 import { ProductPage } from "./pages/ProductPage";
+import { Login } from "./pages/auth/Login";
 
 function App() {
   const signupHandler = async () => {
@@ -48,6 +49,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="products" element={<ProductPage />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </div>
   );
