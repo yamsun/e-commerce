@@ -1,41 +1,54 @@
+import axios from "axios";
 import "./App.css";
-import logo from "./logo.png";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Mockman from "mockman-js";
+import { ProductPage } from "./pages/ProductPage";
 
 function App() {
+  const signupHandler = async () => {
+    try {
+      const response = await axios.post(`/api/auth/signup`, {
+        firstName: "Adarsh",
+        lastName: "Balika",
+        email: "adarshbalika@neog.camp",
+        password: "adarshBalika",
+      });
+      // saving the encodedToken in the localStorage
+      console.log("token res", response);
+      localStorage.setItem("token", response.data.encodedToken);
+    } catch (error) {
+      console.log("signup errr", error);
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get("/api/products")
+      .then((res) => {
+        console.log("resss", res);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  console.log(process.env.REACT_APP_JWT_SECRET);
+
+  if (process.env.REACT_APP_JWT_SECRET) {
+    // Variable is set
+    console.log("Variable is set:", process.env.REACT_APP_JWT_SECRET);
+  } else {
+    // Variable is not set
+    console.log("Variable is not set");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
-      </header>
+    <div className="app">
+      <Routes>
+        <Route path="mock-api" element={<Mockman />} />
+      </Routes>
+      <Routes>
+        <Route path="products" element={<ProductPage />} />
+      </Routes>
     </div>
   );
 }

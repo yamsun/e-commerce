@@ -1,0 +1,39 @@
+.sidefilter{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+}
+
+.sidefilter>div{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidefilter>.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+div>h5{
+    align-self: flex-start;
+}
+
+.slidecontainer {
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    /* Width of the outside container */
+  }
+
+.checkboxcontainer, .radiocontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+ 

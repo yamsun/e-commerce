@@ -1,0 +1,218 @@
+.page{
+    background-color: #fff;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* grid-template-columns: 100px auto 100px; */
+    grid-template-rows: 10% 90%;
+    /* grid-gap: 1px; */
+    height: 100vh;
+    overflow: hidden; /* Hide scrollbars */
+    /* position: relative;; */
+}
+
+.page > div {
+    /* padding: 20px; */
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.page > .nav{
+    background-color: #ffffff;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+   
+}
+
+.side{
+    background-color: gray;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+
+
+.page > .main {
+    background-color: #F7F7F7;
+    color:#f00;
+    grid-column-start: 4;
+    grid-column-end: -1;
+    padding: 0px 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width:100%;
+    gap: 10px;
+}
+
+
+.page > .main > .head > h4 {
+    margin:0;
+    font-size: 24px;
+    font-weight: 700;
+    color:#000;
+    /* margin-right: 10px; */
+}
+
+.page > .main > div {
+    /* margin:0; */
+    font-size: 16px;
+    font-weight: 400;
+    color:#000;
+}
+
+.font {
+    color: #f00;
+    font-size: 20px;
+  }
+
+.page > .main > .productList {
+/* border: 2px solid salmon; */
+width: 100%;
+height: 100%;
+margin: 10px 0 0 0;
+overflow-y:auto;
+display: flex;
+flex-wrap: wrap;
+flex:1;
+}
+
+.filterBtn{
+    position: absolute;
+    right:0;
+    bottom:0;
+    display: none;
+}
+
+.filterBtn > button{
+    font-size: larger;
+}
+
+.closeFilterBtn{
+    display: none;
+}
+
+.backdrop{
+    position: absolute;
+    display: none;
+}
+
+
+@media (max-width: 800px) {
+    /* .page > .side{
+        display: none;
+    } */
+
+    /* .page > .nav, .main {
+        opacity: 0.5;
+    } */
+
+   
+
+   
+
+    .page > .main, .nav {
+        grid-column-start: 1;
+        transition: 0.5s;
+    }
+
+    
+
+    .filterBtn{
+        display: block;
+        z-index: 5;
+    }
+
+    .page > .side{
+        display: none;
+        position: absolute;
+        background-color: gray;
+        padding: 20px;
+        border-radius: 20px 20px 0 0;
+        z-index: 2;
+        opacity: 0;
+        transition: 2s;
+        /* width:100vw; */
+        bottom: 0;
+        right: 0;
+        left:0;
+        right:0;
+
+    }
+
+    .page > .mobileFilter{
+        display: block;
+        transition: 2s;
+        bottom: 0;
+        left:0;
+        right:0;
+        /* top:0; */
+        opacity: 1;
+        background-color: #fff;
+        color:#000;
+  /* display: none; */
+  
+    }
+
+    .filterOnPage{
+        opacity: 0.4;
+    }
+
+    .closeFilterBtn{
+        display:contents;
+        border:2px solid green;
+        font-size: x-large;
+        position: absolute;
+        top:-50px;
+        left:auto;
+        right: auto;
+        margin: auto;
+    }
+
+    .page > .backdrop{
+        display: block;
+        position: absolute;
+        background-color: #fff;
+        z-index: 1;
+        opacity: 0;
+        transition: 1s;
+        /* bottom: -100%; */
+        right: 0;
+        left:0;
+        bottom:0;
+        top:100vh;
+    }
+
+    .page > .showBackDrop{
+        transition: 0.2s;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        opacity: 0.5;
+        background-color: gray;
+    }
+
+  
+    
+}
+
+@media (max-width: 400px) {
+    .page{
+        grid-template-rows: 15% 85%;
+    }
+}
