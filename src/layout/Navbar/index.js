@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext, useAuth } from "../../context/auth-context";
 import styles from "./Navbar.module.css";
 export const Navbar = () => {
+  // const authValue = useAuth();
+  const authValue = useContext(AuthContext);
+  console.log("auth value from nav", authValue);
   return (
     <div className={styles.nav}>
       <div className={styles.logo}>MyShoppingSite</div>
@@ -9,6 +15,20 @@ export const Navbar = () => {
       <div className={styles.buttons}>
         <div className={styles.wishlist}>❤️</div>
         <div className={styles.wishlist}>🛒 Cart</div>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign up</Link>
+        {!authValue?.token ? (
+          "logged nahi in hai"
+        ) : (
+          <button
+            onClick={() => {
+              authValue?.logoutHandler();
+            }}
+          >
+            LOGOUT
+          </button>
+        )}
+        {}
       </div>
     </div>
   );

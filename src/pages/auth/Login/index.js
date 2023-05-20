@@ -1,7 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useAuth } from "../../../context/auth-context";
 import { Navbar } from "../../../layout/Navbar";
 
 export const Login = () => {
+  const authValues = useAuth();
+  console.log("authValues", authValues);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div>
       <Navbar />
@@ -9,13 +16,22 @@ export const Login = () => {
         <div>Login</div>
         <label>
           Email address:
-          <input />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
           Password:
-          <input />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
-        <button>Login</button>
+        <button
+          onClick={() => {
+            authValues.loginHandler(email, password);
+          }}
+        >
+          Login
+        </button>
         <button>Login as test user</button>
         <div>Don't have an account? sign up</div>
       </div>
