@@ -75,7 +75,6 @@ const AuthProvider = ({ children }) => {
         logoutHandler,
       }}
     >
-      context ka text
       {children}
     </AuthContext.Provider>
   );

@@ -1,5 +1,4 @@
 import axios from "axios";
-import "./App.css";
 import { useEffect } from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Mockman from "mockman-js";
@@ -8,6 +7,8 @@ import { Login } from "./pages/auth/Login";
 import { Signup } from "./pages/auth/Signup";
 import { useAuth } from "./context/auth-context";
 import { users } from "./backend/db/users";
+import { Navbar } from "./layout/Navbar";
+import NavLayout from "./layout/Navbar/RouteLayouts/NavLayout";
 
 function App() {
   const authValue = useAuth();
@@ -33,39 +34,14 @@ function App() {
 
   return (
     <div className="app">
-      Hello {authValue?.currentUser?.firstName}
       <Routes>
         <Route path="mock-api" element={<Mockman />} />
       </Routes>
       <Routes>
-        <Route path="products" element={<ProductPage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route
-          element={
-            <>
-              {authValue?.currentUser?.role == 5 ? (
-                <Outlet />
-              ) : (
-                <>Nahi hai Access, role 5 nahi hai aapka</>
-              )}
-            </>
-          }
-        >
-          <Route path="onlyfive" element={<>Display to only 5</>} />
-        </Route>
-        <Route
-          element={
-            <>
-              {authValue?.currentUser?.role == 3 ? (
-                <Outlet />
-              ) : (
-                <>Nahi hai Access, role 3 nahi hai aapka</>
-              )}
-            </>
-          }
-        >
-          <Route path="onlythree" element={<>Display to only 3</>} />
+        <Route element={<NavLayout />}>
+          <Route path="products" element={<ProductPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
       </Routes>
     </div>

@@ -17,6 +17,8 @@
     /* box-shadow: 2px 2px 2px  black; */
     transition: 0.5s;
     position: relative;
+    max-height: 50vh;
+    max-width: 15vw;
 }
 
 .card:hover{
@@ -36,6 +38,7 @@
 
  .name {
     font-size: 16px;
+    font-weight: 600;
 }
 
  .price {
@@ -49,6 +52,16 @@
     background-color: #ff9f00;
     color:#fff;
     height:2em;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.card > .btn:hover{
+    color:black;
+font-weight: 500;
+border: 2px solid black;
+border-left: 0px;
+border-right: 0px;
 }
 
 .card > .heart {

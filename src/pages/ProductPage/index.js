@@ -1,20 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../layout/Navbar";
 import styles from "./ProductPage.module.css";
 import { ProductCard } from "./components/ProductCard.js";
 import { SideFilter } from "./components/SideFilter";
+import axios from "axios";
 
 export const ProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
+
+  const [productData, setProductData] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`/api/products`);
+      setProductData(res?.data?.products);
+    } catch (error) {
+      console.log("get ProductData error", error);
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.page}>
-        <div
-          className={`${styles.nav}  ${showFilter ? styles.filterOnPage : ""}`}
-        >
-          <Navbar />
-        </div>
-
         <div
           className={`${styles.backdrop} ${
             showFilter ? styles.showBackDrop : ""
@@ -51,11 +58,9 @@ export const ProductPage = () => {
             <h4>Showing All Products </h4> <div> ( Showing 20 products )</div>
           </div>
           <div className={styles.productList}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(
-              (item, index) => {
-                return <ProductCard key={index} />;
-              }
-            )}
+            {[...productData, ...productData].map((item, index) => {
+              return <ProductCard product={item} key={item?.id} />;
+            })}
           </div>
         </div>
       </div>

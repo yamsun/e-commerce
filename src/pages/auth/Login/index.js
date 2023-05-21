@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useAuth } from "../../../context/auth-context";
 import { Navbar } from "../../../layout/Navbar";
+import styles from "./login.module.css";
 
 export const Login = () => {
   const authValues = useAuth();
@@ -10,30 +11,34 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div>
-      <Navbar />
-      <div className="">
-        <div>Login</div>
-        <label>
-          Email address:
-          <input value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button
-          onClick={() => {
-            authValues.loginHandler(email, password);
-          }}
-        >
-          Login
-        </button>
-        <button>Login as test user</button>
-        <div>Don't have an account? sign up</div>
+    <div className={styles.loginContainer}>
+      <div className={styles.card}>
+        <h3 className={styles.heading}>Sign In</h3>
+        <div className={styles.form}>
+          <label>
+            <div>Email address</div>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          </label>
+          <label>
+            <div>Password</div>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <button
+            onClick={() => {
+              authValues.loginHandler(email, password);
+            }}
+            className={styles.loginBtn}
+          >
+            Login
+          </button>
+          <button className={`${styles.loginBtn} ${styles.testLoginBtn}`}>
+            Login as test user
+          </button>
+          <div>Create New Account ></div>
+        </div>
       </div>
     </div>
   );

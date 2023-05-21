@@ -18,7 +18,7 @@ export const Navbar = () => {
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign up</Link>
         {!authValue?.token ? (
-          "logged nahi in hai"
+          "Login to kar!"
         ) : (
           <button
             onClick={() => {
@@ -28,6 +28,7 @@ export const Navbar = () => {
             LOGOUT
           </button>
         )}
+        {authValue?.token ? "Hi " + authValue.currentUser?.firstName : ""}
         {}
       </div>
     </div>
