@@ -1,0 +1,24 @@
+.card{
+    border: 2px solid black;
+    display: flex;
+    padding: 0.4em;
+}
+
+.detail{
+    padding:0em 1em;
+}
+.name{
+    font-size: 1.1em;
+}
+
+.author{
+    font-size: small;
+}
+
+.originalPrice{
+text-decoration: line-through;
+}
+
+img{
+    width: 100px;
+}

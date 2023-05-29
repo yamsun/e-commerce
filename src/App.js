@@ -9,6 +9,7 @@ import { useAuth } from "./context/auth-context";
 import { users } from "./backend/db/users";
 import { Navbar } from "./layout/Navbar";
 import NavLayout from "./layout/Navbar/RouteLayouts/NavLayout";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const authValue = useAuth();
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route element={<NavLayout />}>
           <Route path="products" element={<ProductPage />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>

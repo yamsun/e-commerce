@@ -10,13 +10,17 @@ export const ProductPage = () => {
 
   const [productData, setProductData] = useState([]);
 
-  useEffect(async () => {
+  const fetchProducts = async () => {
     try {
       const res = await axios.get(`/api/products`);
       setProductData(res?.data?.products);
     } catch (error) {
       console.log("get ProductData error", error);
     }
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
@@ -59,7 +63,7 @@ export const ProductPage = () => {
           </div>
           <div className={styles.productList}>
             {[...productData, ...productData].map((item, index) => {
-              return <ProductCard product={item} key={item?.id} />;
+              return <ProductCard product={item} key={item?._id} />;
             })}
           </div>
         </div>

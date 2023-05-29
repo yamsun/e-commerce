@@ -6,15 +6,20 @@ export const Navbar = () => {
   // const authValue = useAuth();
   const authValue = useContext(AuthContext);
   console.log("auth value from nav", authValue);
+
   return (
     <div className={styles.nav}>
-      <div className={styles.logo}>MyShoppingSite</div>
+      <Link to="/products">
+        <div className={styles.logo}>MyShoppingSite</div>
+      </Link>
       <div className={styles.search}>
         <input placeholder="Search" />
       </div>
       <div className={styles.buttons}>
         <div className={styles.wishlist}>❤️</div>
-        <div className={styles.wishlist}>🛒 Cart</div>
+        <div className={styles.wishlist}>
+          <Link to="/cart">🛒 Cart</Link>
+        </div>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign up</Link>
         {!authValue?.token ? (

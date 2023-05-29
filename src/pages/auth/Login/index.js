@@ -10,6 +10,12 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const loginAsTestUser = () => {
+    setEmail("test@user.com");
+    setPassword("testpassword");
+    authValues.loginHandler("test@user.com", "testpassword");
+  };
+
   return (
     <div className={styles.loginContainer}>
       <div className={styles.card}>
@@ -34,7 +40,12 @@ export const Login = () => {
           >
             Login
           </button>
-          <button className={`${styles.loginBtn} ${styles.testLoginBtn}`}>
+          <button
+            className={`${styles.loginBtn} ${styles.testLoginBtn}`}
+            onClick={() => {
+              loginAsTestUser();
+            }}
+          >
             Login as test user
           </button>
           <div>Create New Account ></div>

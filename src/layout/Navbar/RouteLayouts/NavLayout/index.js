@@ -16,7 +16,9 @@ const NavLayout = () => {
       >
         <Navbar />
       </div>
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

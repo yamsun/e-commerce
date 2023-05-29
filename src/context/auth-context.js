@@ -67,7 +67,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        item: 3,
         loginHandler,
         signupHandler,
         token,
